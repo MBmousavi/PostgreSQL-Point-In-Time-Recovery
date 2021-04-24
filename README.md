@@ -177,3 +177,4 @@ demo=# select count(*) from tbl1;
 (1 row)
 ```
 Finally we have our 20M healthy recods.
+After recovery postgre rename the `recovery.conf` to `recovery.done`.
