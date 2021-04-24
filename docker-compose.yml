@@ -1,0 +1,35 @@
+version: '3'
+services:
+   postgre9_1:
+      image: postgres:9.6.21 
+      container_name: postgres9_1
+      volumes:
+        - ./postgre9_1:/var/lib/postgresql/data/ 
+      environment:
+        POSTGRES_PASSWORD: admin@123
+        POSTGRES_USER: postgres
+        TZ: "Asia/Tehran"
+      networks:
+        postgre:
+           ipv4_address: 172.21.0.2
+
+   postgre9_2:
+      image: postgres:9.6.21
+      container_name: postgres9_2
+      volumes:
+        - ./postgre9_2:/var/lib/postgresql/data/
+        - ./restore_wal:/home
+      environment:
+        POSTGRES_PASSWORD: admin@123
+        POSTGRES_USER: postgres
+        TZ: "Asia/Tehran"
+      networks:
+        postgre:
+           ipv4_address: 172.21.0.3
+
+networks:
+  postgre:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.21.0.0/16
