@@ -60,8 +60,8 @@ postgres=# create database demo;
 CREATE DATABASE
 postgres=# create table tbl1 (col1 int);
 CREATE TABLE
-postgres=# insert into tbl1 (col1) select generate_series(1, 1000000);
-INSERT 0 1000000
+postgres=# insert into tbl1 (col1) select generate_series(1, 10000000);
+INSERT 0 10000000
 postgres=# select count(*) from tbl1;
   count  
 ---------
@@ -92,12 +92,12 @@ demo=# \dt
  public | tbl1 | table | postgres
 (1 row)
 
-demo=# insert into tbl1 (col1) select generate_series(1, 1000000);
-INSERT 0 1000000
+demo=# insert into tbl1 (col1) select generate_series(1, 10000000);
+INSERT 0 10000000
 demo=# select count(*) from tbl1;
   count  
 ---------
- 2000000
+ 20000000
 (1 row)
 
 demo=# select now();
@@ -173,7 +173,7 @@ You are now connected to database "demo" as user "postgres".
 demo=# select count(*) from tbl1;
   count  
 ---------
- 2000000
+ 20000000
 (1 row)
 ```
 Finally we have our 20M healthy recods.
