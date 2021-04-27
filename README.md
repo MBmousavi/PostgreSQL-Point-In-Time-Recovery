@@ -58,6 +58,8 @@ PGPASSWORD=admin@123 psql -h 172.21.0.2 -U postgres
 
 postgres=# create database demo;
 CREATE DATABASE
+postgres=# \c demo
+You are now connected to database "demo" as user "postgres".
 postgres=# create table tbl1 (col1 int);
 CREATE TABLE
 postgres=# insert into tbl1 (col1) select generate_series(1, 10000000);
@@ -72,7 +74,7 @@ postgres=# select count(*) from tbl1;
 **Point 2:**
 Alright, now create a base backup:
 
-`GPASSWORD=admin@123 pg_basebackup  -h 172.21.0.2 -U postgres  -D  pgbackup` 
+`PGPASSWORD=admin@123 pg_basebackup  -h 172.21.0.2 -U postgres  -D  pgbackup` 
 
 The `pgbackup` is the output directoy. We copy it to the data directory of secondary database. It's `postgre9_2` in `docker-compose.yml`.
 
